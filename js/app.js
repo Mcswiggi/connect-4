@@ -4,6 +4,7 @@
 
 // 2) store cached element references to connect javascript constants to elements on HTML page (gameBoard , gameMessage, whoseTurn)
 
+
 // 3) create an initializing function to clear the board and necessary state variables
 
 // create start button and clicked (init), prompt for player names and board appears
@@ -32,11 +33,23 @@
 // or create an indexing piece dropper?
 
 /*------Constants------*/
-
+const winningCombinations = []
 /*------Variables (state)------*/
-
+let gameBoard, isWinner, playerTurn
 /*------Cached Element References------*/
+const gameBoardEl = document.querySelectorAll('div')
+const resetBtn = document.querySelector('#restart')
+const messageEl = document.querySelector('#gameMessage')
 
 /*------Event Listeners------*/
+gameBoardEl.forEach((spot) => {
+    spot.addEventListener('click', handleClick)
+})
 
 /*------Functions------*/
+
+function handleClick(spot) {
+    console.log('clicked')
+    let spotNum = spot.target.id
+    console.log(spotNum)
+}
