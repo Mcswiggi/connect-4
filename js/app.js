@@ -13,7 +13,8 @@
 
 // create timer function for after player names are entered is pressed
 
-// 4) create function render to apply changes to where in the gameBoard array the current player is going to drop their game piece.  Within this function i should have some logic that the game piece will go to the bottom of the column depending on if there is a game piece there or not.
+// 4) create function render to apply changes to where in the gameBoard array the current player is going to drop their game piece.  Within this function i should have some logic that the game piece will go to the bottom of the column depending on if there is a game piece there or not. (valid move  function)
+
 // if statmente for if isWinner = false then it is player 1 or 2 turn, if all the spots on the board are not null then it is a 'T' or announce the winner
 // display a message for whose turn it is. prompt for player names
 // display game state. whose turn it is, win, tie
@@ -34,6 +35,8 @@
 
 /*------Constants------*/
 const winningCombinations = []
+const player1 = prompt("What is player one's name?")
+const player2 = prompt("What is player two's name?")
 /*------Variables (state)------*/
 let gameBoard, isWinner, playerTurn
 /*------Cached Element References------*/
@@ -48,8 +51,61 @@ gameBoardEl.forEach((spot) => {
 
 /*------Functions------*/
 
+init()
+
+function init() {
+    isWinner = false
+    playerTurn = randomTurn() //randomly picks who goes first
+
+    if (isWinner === false) {
+        if(playerTurn === 1){
+            messageEl.innerHTML = `It is ${player1}'s turn!`
+        } else {
+            messageEl.innerHTML = `It is ${player2}'s turn!`
+        }
+    } else if (isWinner === 'T') {
+        messageEl.innerHTML = 'It is a tie!'
+    } else {
+        if (isWinner = 1) {
+            messageEl.innerHTML = `Congrats ${player1}! You Win!`
+        } else {
+            messageEl.innerHTML = `Congrats ${player2}! You Win!`
+        }
+    }
+}
+
+function randomTurn () {
+    turn = Math.random()
+    if (turn < .5) {
+        return 1
+    } else {
+        return -1
+    }
+}
+
+function clearText () {
+
+}
+
+function render () {
+
+}
+
+function checkWinner() {
+
+}
+
+function validMove() {
+
+}
+
+function timer() {
+
+}
+
 function handleClick(spot) {
     console.log('clicked')
-    let spotNum = spot.target.id
-    console.log(spotNum)
+    let spotNum = spot.target
+    console.log(spotNum.getAtrribute())
+    validMove()
 }
