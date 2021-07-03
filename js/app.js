@@ -57,21 +57,7 @@ function init() {
     isWinner = false
     playerTurn = randomTurn() //randomly picks who goes first
 
-    if (isWinner === false) {
-        if(playerTurn === 1){
-            messageEl.innerHTML = `It is ${player1}'s turn!`
-        } else {
-            messageEl.innerHTML = `It is ${player2}'s turn!`
-        }
-    } else if (isWinner === 'T') {
-        messageEl.innerHTML = 'It is a tie!'
-    } else {
-        if (isWinner = 1) {
-            messageEl.innerHTML = `Congrats ${player1}! You Win!`
-        } else {
-            messageEl.innerHTML = `Congrats ${player2}! You Win!`
-        }
-    }
+ 
 }
 
 function randomTurn () {
@@ -89,6 +75,22 @@ function clearText () {
 
 function render () {
 
+    
+    if (isWinner === false) {
+        if(playerTurn === 1){
+            messageEl.innerHTML = `It is ${player1}'s turn!`
+        } else {
+            messageEl.innerHTML = `It is ${player2}'s turn!`
+        }
+    } else if (isWinner === 'T') {
+        messageEl.innerHTML = 'It is a tie!'
+    } else {
+        if (isWinner = 1) {
+            messageEl.innerHTML = `Congrats ${player1}! You Win!`
+        } else {
+            messageEl.innerHTML = `Congrats ${player2}! You Win!`
+        }
+    }
 }
 
 function checkWinner() {
