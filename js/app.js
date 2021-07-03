@@ -35,8 +35,8 @@
 
 /*------Constants------*/
 const winningCombinations = []
-const player1 = prompt("What is player one's name?")
-const player2 = prompt("What is player two's name?")
+const player1 = 1   //prompt("What is player one's name?")
+const player2 = -1  //prompt("What is player two's name?")
 /*------Variables (state)------*/
 let gameBoard, isWinner, playerTurn
 /*------Cached Element References------*/
@@ -54,9 +54,28 @@ gameBoardEl.forEach((spot) => {
 init()
 
 function init() {
+    gameBoard = [
+        // [1,1,3,4,5,6],
+        // [1,2,3,4,5,6],
+        // [1,2,3,4,5,6],
+        // [1,2,3,4,5,6],
+        // [1,2,3,4,5,6],
+        // [1,2,3,4,5,6],
+        // [1,2,3,4,5,6],
+        [1, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, 1, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, 1],
+    ]
+
+
     isWinner = false
     playerTurn = randomTurn() //randomly picks who goes first
-
+    
+    render()
  
 }
 
@@ -74,6 +93,18 @@ function clearText () {
 }
 
 function render () {
+    // gameBoard.forEach(function(column, idx) {
+    //     gameBoardEl[idx].style.background= 'blue'
+    //     console.log(gameBoard[idx])
+    //     gameBoard[idx].forEach(function(spot,idx) {
+    //         console.log(spot, idx)
+    //     })
+    //     })
+        // column.forEach(function(spot, idx) {
+        //   spot[idx].style.background = 'blue'  
+        // })
+
+    // })
 
     
     if (isWinner === false) {
@@ -107,7 +138,9 @@ function timer() {
 
 function handleClick(spot) {
     console.log('clicked')
-    let spotNum = spot.target
-    console.log(spotNum.getAtrribute())
+    console.log(spot.cellIndex)
+    playerTurn *= -1
     validMove()
+    isWinner = checkWinner()
+    render()
 }
