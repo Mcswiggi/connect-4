@@ -103,7 +103,7 @@ function handleClick(event) {
     return 
 }
 //change to gameBoard?
-//iterate through all the cells 
+//iterate through all the cells =================================check call======================
 Array.prototype.forEach.call(columnEl , function (cell) {
     cell.addEventListener('click' , render)
     cell.style.backgroundColor = 'white'
@@ -125,7 +125,9 @@ function render (event) {
             row.push(rowEl[i].children[column]);
             if (playerTurn === 1){
                 row[0].style.backgroundColor = 'red';
-                if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
+                if (horizontalWinCondition() || verticalWinCondition() || //diagonalWinCondition() || 
+                diagonalWinCondition2()
+                ){
                     messageEl.textContent = `${player1} WINS!!`;
                     messageEl.style.color = 'red';
                     return alert(`${player1} WINS!!`);
@@ -138,7 +140,10 @@ function render (event) {
                 }
             }else{
                 row[0].style.backgroundColor = 'blue';
-                if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
+                if (horizontalWinCondition() || verticalWinCondition() 
+                //|| diagonalWinCondition() 
+                || diagonalWinCondition2()
+                ){
                     messageEl.textContent = `${player2} WINS!!`;
                     messageEl.style.color = 'blue';
                     return alert(`${player2} WINS!!`);
@@ -185,7 +190,7 @@ function render (event) {
 }
 
     function checkColor(one , two, three, four) {
-       if (one === two && one === three && one === four)
+       if (one === two && one === three && one === four && one !== 'white' && one !== undefined)
        return true
         // if(gameBoard.includes(null)) {
             //     return false
@@ -196,11 +201,11 @@ function render (event) {
         
     function horizontalWinCondition() {
         //checks for horizonal win
-        //iterating through all 6 rows
-        for (let row = 0; row < rowEl.length; i++){
-            for (let col = 0; col < 4; col++){
+        //iterating through all 6 rows and horizonatally theres 4 possible winning conbinations per row
+        for (let x = 0; x < 6; x++){
+            for (let y = 0; y < 4; y++){
                 //checking if 4 colors match by retreiving the children nodes of the rows
-                if (checkColor(rowEl[row].children[col].style.backgroundColor, rowEl[row].children[col+1].style.backgroundColor, rowEl[row].children[col+2].style.backgroundColor, rowEl[row].children[col+3].style.backgroundColor)){
+                if (checkColor(rowEl[x].children[y].style.backgroundColor, rowEl[x].children[y+1].style.backgroundColor, rowEl[x].children[y+2].style.backgroundColor, rowEl[x].children[y+3].style.backgroundColor)){
                     return true
                 }
             }
@@ -209,15 +214,37 @@ function render (event) {
     }
 
     function verticalWinCondition() {
-
+        //iterating through all 7 columns and checking for the 3 possible winning combinations per column
+        for (let y = 0; y < 7; y++){
+            for (let x = 0; x < 3; x++){
+                if (checkColor(rowEl[x].children[y].style.backgroundColor, rowEl[x+1].children[y].style.backgroundColor, rowEl[x+2].children[y].style.backgroundColor, rowEl[x+3].children[y].style.backgroundColor)){
+                    return true
+                }
+            }
+        }
     }
 
     function diagonalWinCondition() {
+        //iterate through all 7 columns and checking 12 possible winning combinations for it possible to be true
+        for (let y = 0; y < 3; y++){
+            for (let x = 0; x < 4; x++){
+                if (checkColor(rowEl[x].children[y].style.backgroundColor, rowEl[x-1].children[y-1].style.backgroundColor, rowEl[x-2].children[y-2].style.backgroundColor, rowEl[x-3].children[y-3].style.backgroundColor)){
+                    return true
+                }
+            }
+        }
 
     }
 
     function diagonalWinCondition2() {
-
+        // iterating from right to left 
+        for (let y = 0; y < 4; y++){
+            for (let x = 0; x < 3; x++){
+                if (checkColor(rowEl[x].children[y].style.backgroundColor, rowEl[x+1].children[y+1].style.backgroundColor, rowEl[x+2].children[y+2].style.backgroundColor, rowEl[x+3].children[y+3].style.backgroundColor)){
+                    return true
+                }
+            }
+        }
     }
 
     function checkTie() {
