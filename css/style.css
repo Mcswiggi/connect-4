@@ -2,7 +2,7 @@ body{
 text-align: center;
 }
 
-section.board{
+div.board{
     /* display: grid;
     grid-template-columns: repeat(7, 110px);
     grid-template-rows: repeat(6, 110px);
