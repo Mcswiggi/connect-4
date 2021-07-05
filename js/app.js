@@ -35,34 +35,28 @@
 
 /*------Constants------*/
 const winningCombinations = []
-const player1 = 1   //prompt("What is player one's name?")
-const player2 = -1  //prompt("What is player two's name?")
+const player1 = prompt("What is player one's name?")
+const player2 = prompt("What is player two's name?")
 /*------Variables (state)------*/
 let gameBoard, isWinner, playerTurn, x, y
 /*------Cached Element References------*/
 const rowEl = document.getElementsByTagName('tr') //y-direction
 const columnEl = document.getElementsByTagName('td') //x-direction
-const resetBtn = document.querySelector('#restart')
+const resetBtn = document.querySelector('.restart')
 const messageEl = document.querySelector('#gameMessage')
-const cells = document.querySelectorAll('cell')
+const cells = document.querySelectorAll('.cell')
 /*------Event Listeners------*/
 for(i = 0 ; i < columnEl.length ; i++){
 columnEl[i].addEventListener('click', handleClick)
 }
 
+resetBtn.addEventListener('click', init)
 /*------Functions------*/
 
 init()
 
 function init() {
     gameBoard = [
-        // [1,1,3,4,5,6],
-        // [1,2,3,4,5,6],
-        // [1,2,3,4,5,6],
-        // [1,2,3,4,5,6],
-        // [1,2,3,4,5,6],
-        // [1,2,3,4,5,6],
-        // [1,2,3,4,5,6],
         [null, null, null, null, null, null],
         [null, null, null, null, null, null],
         [null, null, null, null, null, null],
@@ -72,10 +66,20 @@ function init() {
         [null, null, null, null, null, null],
     ]
 
+        cells.forEach(cell => {
+           cell.style.backgroundColor ='white'
+        })
+
     isWinner = false
     playerTurn = randomTurn() //randomly picks who goes first
-    
-    //render()
+    if (playerTurn === 1){
+        messageEl.innerText = `${player1} goes first`
+        messageEl.style.color = 'red'
+    } else {
+        messageEl.innerText = `${player2} goes first`
+        messageEl.style.color = 'blue'
+    }
+
  
 }
 
@@ -97,14 +101,13 @@ function handleClick(event) {
     x = event.target.cellIndex
     y = event.target.parentElement.rowIndex
   console.log(`${y}, ${x}`)
-    validMove()
     //isWinner = checkWinner()
     //render()
     return 
 }
-//change to gameBoard?
-//iterate through all the cells =================================check call======================
-Array.prototype.forEach.call(columnEl , function (cell) {
+
+//iterate through all the cells =================================check call============================
+cells.forEach.call(columnEl , function (cell) {
     cell.addEventListener('click' , render)
     cell.style.backgroundColor = 'white'
 })
@@ -125,78 +128,46 @@ function render (event) {
             row.push(rowEl[i].children[column]);
             if (playerTurn === 1){
                 row[0].style.backgroundColor = 'red';
-                if (horizontalWinCondition() || verticalWinCondition() || //diagonalWinCondition() || 
-                diagonalWinCondition2()
-                ){
+                if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player1} WINS!!`;
                     messageEl.style.color = 'red';
                     return alert(`${player1} WINS!!`);
-                }else if (isWinner === checkTie()){  //-------------------------work on tie games! also line 144
+                }else if ( checkTie()
+                    ){  //-------------------------work on tie games! also line 144
                     messageEl.textContent = 'DRAW!';
                     return alert('DRAW!');
                 }else{
                     messageEl.textContent = `${player2}'s turn`
+                    messageEl.style.color = 'blue'
                     return playerTurn = -1;
                 }
             }else{
                 row[0].style.backgroundColor = 'blue';
-                if (horizontalWinCondition() || verticalWinCondition() 
-                //|| diagonalWinCondition() 
-                || diagonalWinCondition2()
-                ){
+                if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player2} WINS!!`;
                     messageEl.style.color = 'blue';
                     return alert(`${player2} WINS!!`);
-                }else if (isWinner === checkTie()){
+                }else if (//isWinner === 'T' 
+                    checkTie()
+                    ){
                     messageEl.textContent = 'DRAW!';
                     return alert('DRAW!');
                 }else{
                     messageEl.textContent = `${player1}'s turn`;
+                    messageEl.style.color = 'red'
                     return playerTurn = 1;
                 }
                 
             }
         }
     }
-//     for(i = 0; i < columnEl.length; i++) {
-//         for(j = 0; j < rowEl.length; j++){
-//         if (element === 1) {
-//             columnEl.style.background = 'blue'
-//         } else if (element === -1) {
-//             columnEl.style.background = 'red'
-//         } else {
-//             columnEl.style.background = 'white'
-//         }
-//     }
-// }
 
 
-
-// if (isWinner === false) {
-//     if(playerTurn === 1){
-//         messageEl.innerHTML = `It is ${player1}'s turn!`
-//     } else {
-//         messageEl.innerHTML = `It is ${player2}'s turn!`
-//     }
-// } else if (isWinner === 'T') {
-//     messageEl.innerHTML = 'It is a tie!'
-// } else {
-//     if (isWinner = 1) {
-//         messageEl.innerHTML = `Congrats ${player1}! You Win!`
-//     } else {
-//         messageEl.innerHTML = `Congrats ${player2}! You Win!`
-//     }
-// }
 }
 
     function checkColor(one , two, three, four) {
        if (one === two && one === three && one === four && one !== 'white' && one !== undefined)
        return true
-        // if(gameBoard.includes(null)) {
-            //     return false
-            // } else {
-                // return "T"
-                // }
     }
         
     function horizontalWinCondition() {
@@ -226,9 +197,10 @@ function render (event) {
 
     function diagonalWinCondition() {
         //iterate through all 7 columns and checking 12 possible winning combinations for it possible to be true
-        for (let y = 0; y < 3; y++){
-            for (let x = 0; x < 4; x++){
-                if (checkColor(rowEl[x].children[y].style.backgroundColor, rowEl[x-1].children[y-1].style.backgroundColor, rowEl[x-2].children[y-2].style.backgroundColor, rowEl[x-3].children[y-3].style.backgroundColor)){
+        //iterating and checking from right to left
+        for (let y = 0; y < 4; y++){
+            for (let x = 5; x > 2; x--){
+                if (checkColor(rowEl[x].children[y].style.backgroundColor, rowEl[x-1].children[y+1].style.backgroundColor, rowEl[x-2].children[y+2].style.backgroundColor, rowEl[x-3].children[y+3].style.backgroundColor)){
                     return true
                 }
             }
@@ -248,19 +220,19 @@ function render (event) {
     }
 
     function checkTie() {
-    if(gameBoard.includes(null)) {
-        return false
-    } else {
-    return "T"
+        // =========================Redo=================
+    for(let x = 0; x < 7; x++) {
+        for(let y = 0; y < 6; y++){
+            if(isWinner = false && rowEl[x].children[y].style.backgroundColor !== 'white'){
+            return true
+            } else {
+            return false
+            }
+        }
     }
-    }
+}
 
-    function validMove() {
-        // if(gameBoard[sqNum] || isWinner === true ) {
-            //     return
-            //     }   
-     }
-        
+            
      function timer() {
             
     }
