@@ -35,8 +35,8 @@
 
 /*------Constants------*/
 const winningCombinations = []
-const player1 = prompt("What is player one's name?")
-const player2 = prompt("What is player two's name?")
+const player1 =1 //prompt("What is player one's name?")
+const player2 = -1 //prompt("What is player two's name?")
 /*------Variables (state)------*/
 let gameBoard, isWinner, playerTurn, x, y
 /*------Cached Element References------*/
@@ -50,25 +50,22 @@ for(i = 0 ; i < columnEl.length ; i++){
 columnEl[i].addEventListener('click', handleClick)
 }
 
+//iterate through all the cells
+cells.forEach(function (cell) {
+    cell.addEventListener('click' , render)
+    cell.style.backgroundColor = 'white'
+})
+
 resetBtn.addEventListener('click', init)
 /*------Functions------*/
 
 init()
 
 function init() {
-    gameBoard = [
-        [null, null, null, null, null, null],
-        [null, null, null, null, null, null],
-        [null, null, null, null, null, null],
-        [null, null, null, null, null, null],
-        [null, null, null, null, null, null],
-        [null, null, null, null, null, null],
-        [null, null, null, null, null, null],
-    ]
-
-        cells.forEach(cell => {
-           cell.style.backgroundColor ='white'
-        })
+    
+    cells.forEach(cell => {
+       cell.style.backgroundColor ='white'
+     })
 
     isWinner = false
     playerTurn = randomTurn() //randomly picks who goes first
@@ -79,8 +76,6 @@ function init() {
         messageEl.innerText = `${player2} goes first`
         messageEl.style.color = 'blue'
     }
-
- 
 }
 
 function randomTurn () {
@@ -92,25 +87,15 @@ function randomTurn () {
     }
 }
 
-function clearText () {
-    
-}
 
 function handleClick(event) {
     console.log('clicked')
     x = event.target.cellIndex
     y = event.target.parentElement.rowIndex
   console.log(`${y}, ${x}`)
-    //isWinner = checkWinner()
-    //render()
     return 
 }
 
-//iterate through all the cells =================================check call============================
-cells.forEach.call(columnEl , function (cell) {
-    cell.addEventListener('click' , render)
-    cell.style.backgroundColor = 'white'
-})
 
 function render (event) {
     // retrieving what column we are working in
@@ -119,8 +104,6 @@ function render (event) {
     // makes sure the game piece will go to the next available spot
     let row = []
 
-
-    //handleClick
     //start from the bottom
     for (i = 5; i > -1; i--){
         //.children will let me go into each spot or cell within each row index left and right
@@ -132,10 +115,9 @@ function render (event) {
                     messageEl.textContent = `${player1} WINS!!`;
                     messageEl.style.color = 'red';
                     return alert(`${player1} WINS!!`);
-                }else if ( checkTie()
-                    ){  //-------------------------work on tie games! also line 144
-                    messageEl.textContent = 'DRAW!';
-                    return alert('DRAW!');
+                }else if ( checkTie() ){ 
+                    messageEl.textContent = 'Tie Game!';
+                    return alert('Tie Game!');
                 }else{
                     messageEl.textContent = `${player2}'s turn`
                     messageEl.style.color = 'blue'
@@ -147,22 +129,31 @@ function render (event) {
                     messageEl.textContent = `${player2} WINS!!`;
                     messageEl.style.color = 'blue';
                     return alert(`${player2} WINS!!`);
-                }else if (//isWinner === 'T' 
-                    checkTie()
-                    ){
-                    messageEl.textContent = 'DRAW!';
-                    return alert('DRAW!');
+                }else if ( checkTie() ){
+                    messageEl.textContent = 'Tie Game!';
+                    return alert('Tie Game!');
                 }else{
                     messageEl.textContent = `${player1}'s turn`;
                     messageEl.style.color = 'red'
                     return playerTurn = 1;
-                }
-                
+                }  
             }
         }
     }
+}
 
 
+function checkTie() {
+   //pushing spots with color into empty array and comparing it to the 42 spots
+  let gameBoard = []
+for( i = 0; i < columnEl.length; i++){
+    if(columnEl[i].style.backgroundColor !== 'white'){
+        gameBoard.push(columnEl[i])
+    }
+}
+if (gameBoard.length === 42) {
+    return true
+}
 }
 
     function checkColor(one , two, three, four) {
@@ -218,21 +209,7 @@ function render (event) {
             }
         }
     }
-
-    function checkTie() {
-        // =========================Redo=================
-    for(let x = 0; x < 7; x++) {
-        for(let y = 0; y < 6; y++){
-            if(isWinner = false && rowEl[x].children[y].style.backgroundColor !== 'white'){
-            return true
-            } else {
-            return false
-            }
-        }
-    }
-}
-
-            
+      
      function timer() {
             
     }
