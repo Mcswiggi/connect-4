@@ -11,8 +11,6 @@
 
 // create a function that determines who goes first
 
-// create timer function for after player names are entered is pressed
-
 // 4) create function render to apply changes to where in the gameBoard array the current player is going to drop their game piece.  Within this function i should have some logic that the game piece will go to the bottom of the column depending on if there is a game piece there or not. (valid move  function)
 
 // if statmente for if isWinner = false then it is player 1 or 2 turn, if all the spots on the board are not null then it is a 'T' or announce the winner
@@ -30,6 +28,8 @@
 
 // SUPER BONUS: 
 // keep track of who's the winner
+// add timers to each player's turn
+// 5 in a row easter egg
 
 // or create an indexing piece dropper?
 
@@ -38,13 +38,21 @@ const winningCombinations = []
 const player1 =1 //prompt("What is player one's name?")
 const player2 = -1 //prompt("What is player two's name?")
 /*------Variables (state)------*/
-let gameBoard, isWinner, playerTurn, x, y
+let gameBoard, isWinner, playerTurn, x, y  //timerIntervalId
 /*------Cached Element References------*/
 const rowEl = document.getElementsByTagName('tr') //y-direction
 const columnEl = document.getElementsByTagName('td') //x-direction
 const resetBtn = document.querySelector('.restart')
 const messageEl = document.querySelector('#gameMessage')
 const cells = document.querySelectorAll('.cell')
+const countdownEl = document.getElementById('countdown')
+const playerClick = new Audio ('Audio/mixkit-winning-a-coin-video-game-2069.wav')
+const playerWin = new Audio ('Audio/mixkit-casino-bling-achievement-2067.wav')
+const resetSound = new Audio ('Audio/mixkit-video-game-retro-click-237.wav')
+const backgroundMusic = new Audio ('Audio/mixkit-game-level-music-689.wav')
+const backgroundMusicbtn = document.querySelector('.music')
+const backgroundMusicbtnOff = document.querySelector('.musicOff')
+
 /*------Event Listeners------*/
 for(i = 0 ; i < columnEl.length ; i++){
 columnEl[i].addEventListener('click', handleClick)
@@ -53,19 +61,69 @@ columnEl[i].addEventListener('click', handleClick)
 //iterate through all the cells
 cells.forEach(function (cell) {
     cell.addEventListener('click' , render)
-    cell.style.backgroundColor = 'white'
+    // cell.style.backgroundColor = 'white'
 })
 
-resetBtn.addEventListener('click', init)
+resetBtn.addEventListener('click', function() {
+    resetSound.play()
+    init()
+})
+
+backgroundMusicbtn.addEventListener('click', backgroundMusicOn)
+backgroundMusicbtnOff.addEventListener('click' , ()=>{
+    backgroundMusic.pause()
+})
 /*------Functions------*/
+
+// function timer() {
+//     let timeLeft = 10
+//     let timer = setInterval (() => {
+//        countdownEl.innerHTML = `${timeLeft} seconds remaining`
+//    timeLeft -= 1
+//    //console.log(timeLeft)
+//    if (timeLeft === 0) {
+//    countdownEl.innerHTML = 'Finished!'
+//    clearInterval(timer)
+//    if (playerTurn === 1){
+//        playerTurn *= -1
+//    }else{
+//        playerTurn *= -1
+//    }
+//    }
+// console.log(timer)
+// }, 1000)
+        
+// }
+
+
+function handleClick(event) {
+    console.log('clicked')
+    x = event.target.cellIndex
+    y = event.target.parentElement.rowIndex
+  console.log(`${y}, ${x}`)
+  const playerClick = new Audio ('Audio/mixkit-winning-a-coin-video-game-2069.wav')
+  playerClick.play()
+  playerClick.volume = .4
+    return 
+}
+
 
 init()
 
-function init() {
+function backgroundMusicOn(){
+ backgroundMusic.play()
+ backgroundMusic.volume = .1
+ backgroundMusic.loop = true
+}
+
+
+
+ function init() {
     
     cells.forEach(cell => {
-       cell.style.backgroundColor ='white'
+       cell.style.backgroundColor =''
      })
+
 
     isWinner = false
     playerTurn = randomTurn() //randomly picks who goes first
@@ -87,16 +145,6 @@ function randomTurn () {
     }
 }
 
-
-function handleClick(event) {
-    console.log('clicked')
-    x = event.target.cellIndex
-    y = event.target.parentElement.rowIndex
-  console.log(`${y}, ${x}`)
-    return 
-}
-
-
 function render (event) {
     // retrieving what column we are working in
     let column = event.target.cellIndex
@@ -107,14 +155,15 @@ function render (event) {
     //start from the bottom
     for (i = 5; i > -1; i--){
         //.children will let me go into each spot or cell within each row index left and right
-        if (rowEl[i].children[column].style.backgroundColor == 'white'){
+        if (rowEl[i].children[column].style.backgroundColor == ''){
             row.push(rowEl[i].children[column]);
             if (playerTurn === 1){
                 row[0].style.backgroundColor = 'red';
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player1} WINS!!`;
                     messageEl.style.color = 'red';
-                    return alert(`${player1} WINS!!`);
+                    playerWin.play()
+                    return //alert(`${player1} WINS!!`);
                 }else if ( checkTie() ){ 
                     messageEl.textContent = 'Tie Game!';
                     return alert('Tie Game!');
@@ -128,7 +177,8 @@ function render (event) {
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player2} WINS!!`;
                     messageEl.style.color = 'blue';
-                    return alert(`${player2} WINS!!`);
+                    playerWin.play()
+                    return //alert(`${player2} WINS!!`);
                 }else if ( checkTie() ){
                     messageEl.textContent = 'Tie Game!';
                     return alert('Tie Game!');
@@ -147,7 +197,7 @@ function checkTie() {
    //pushing spots with color into empty array and comparing it to the 42 spots
   let gameBoard = []
 for( i = 0; i < columnEl.length; i++){
-    if(columnEl[i].style.backgroundColor !== 'white'){
+    if(columnEl[i].style.backgroundColor !== ''){
         gameBoard.push(columnEl[i])
     }
 }
@@ -157,7 +207,7 @@ if (gameBoard.length === 42) {
 }
 
     function checkColor(one , two, three, four) {
-       if (one === two && one === three && one === four && one !== 'white' && one !== undefined)
+       if (one === two && one === three && one === four && one !== '' && one !== undefined)
        return true
     }
         
@@ -210,6 +260,3 @@ if (gameBoard.length === 42) {
         }
     }
       
-     function timer() {
-            
-    }
