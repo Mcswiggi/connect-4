@@ -67,6 +67,7 @@ div{
     /* height: 500px; */
     margin-right: 7%;
     position: relative;
+    
 }
 
 h2#gameMessage{
@@ -153,27 +154,16 @@ h1:focus {
     }    
 }
 
-.music  { 
-    background:blue; 
-    position: relative;
-    margin: 10px 0 0 0;
-}
-
-.musicOff { 
-    background:red; 
-    position: relative;
-    margin: 20px 0 0 0; 
-}
 
 .restart {
-	box-shadow:inset 0px 39px 0px -24px #e67a73;
+    box-shadow:inset 0px 39px 0px -24px #e67a73;
 	background-color:#e4685d;
 	border-radius:4px;
 	border:1px solid #ffffff;
 	/* display:inline-block; */
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	font-family: 'exo 2';
 	font-size:15px;
 	padding:6px 15px;
 	text-decoration:none;
@@ -182,10 +172,31 @@ h1:focus {
     margin: 200px 100px 50px 0;
 }
 .restart:hover {
-	background-color:#eb675e;
+    background-color:#eb675e;
 }
 .restart:active {
-	position:relative;
+    position:relative;
 	top:1px;
 }
 
+.music  { 
+    background:blue; 
+    position: relative;
+    margin: 10px 0 0 0;
+    font-family: 'exo 2';
+}
+
+.music:hover {
+
+}
+
+.musicOff { 
+    background:red; 
+    position: relative;
+    margin: 20px 0 0 0; 
+    font-family: 'exo 2';
+}
+
+.musticOff:hover{
+    
+}

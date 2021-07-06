@@ -66,6 +66,7 @@ cells.forEach(function (cell) {
 })
 
 resetBtn.addEventListener('click', function() {
+    const resetSound = new Audio ('Audio/mixkit-video-game-retro-click-237.wav')
     resetSound.play()
     init()
 })
@@ -112,9 +113,10 @@ function handleClick(event) {
 init()
 
 function backgroundMusicOn(){
- backgroundMusic.play()
- backgroundMusic.volume = .1
- backgroundMusic.loop = true
+    const backgroundMusic = new Audio ('Audio/mixkit-game-level-music-689.wav')
+    backgroundMusic.play()
+    backgroundMusic.volume = .1
+    backgroundMusic.loop = true
 }
 
  function init() {
@@ -160,6 +162,7 @@ function render (event) {
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player1} WINS!!`;
                     messageEl.style.color = 'red';
+                    const playerWin = new Audio ('Audio/mixkit-casino-bling-achievement-2067.wav')
                     playerWin.play()
                     return //alert(`${player1} WINS!!`);
                 }else if ( checkTie() ){ 
@@ -175,6 +178,7 @@ function render (event) {
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player2} WINS!!`;
                     messageEl.style.color = 'blue';
+                    const playerWin = new Audio ('Audio/mixkit-casino-bling-achievement-2067.wav')
                     playerWin.play()
                     return //alert(`${player2} WINS!!`);
                 }else if ( checkTie() ){
