@@ -35,10 +35,11 @@
 
 /*------Constants------*/
 const winningCombinations = []
-const player1 =1 //prompt("What is player one's name?")
+const player1 = 1 //prompt("What is player one's name?")
 const player2 = -1 //prompt("What is player two's name?")
 /*------Variables (state)------*/
-let gameBoard, isWinner, playerTurn, x, y  //timerIntervalId
+let gameBoard, isWinner, playerTurn, x, y  
+// let timerIntervalId
 /*------Cached Element References------*/
 const rowEl = document.getElementsByTagName('tr') //y-direction
 const columnEl = document.getElementsByTagName('td') //x-direction
@@ -46,12 +47,12 @@ const resetBtn = document.querySelector('.restart')
 const messageEl = document.querySelector('#gameMessage')
 const cells = document.querySelectorAll('.cell')
 const countdownEl = document.getElementById('countdown')
+const backgroundMusicbtn = document.querySelector('.music')
+const backgroundMusicbtnOff = document.querySelector('.musicOff')
 const playerClick = new Audio ('Audio/mixkit-winning-a-coin-video-game-2069.wav')
 const playerWin = new Audio ('Audio/mixkit-casino-bling-achievement-2067.wav')
 const resetSound = new Audio ('Audio/mixkit-video-game-retro-click-237.wav')
 const backgroundMusic = new Audio ('Audio/mixkit-game-level-music-689.wav')
-const backgroundMusicbtn = document.querySelector('.music')
-const backgroundMusicbtnOff = document.querySelector('.musicOff')
 
 /*------Event Listeners------*/
 for(i = 0 ; i < columnEl.length ; i++){
@@ -116,14 +117,11 @@ function backgroundMusicOn(){
  backgroundMusic.loop = true
 }
 
-
-
  function init() {
     
     cells.forEach(cell => {
        cell.style.backgroundColor =''
      })
-
 
     isWinner = false
     playerTurn = randomTurn() //randomly picks who goes first

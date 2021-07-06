@@ -1,6 +1,6 @@
 body{
 text-align: center;
-/* display: flex; */
+
 background-image: url("/img/3437815.jpg");
 background-repeat: no-repeat;
 background-position: center;
@@ -9,12 +9,17 @@ background-size: cover ;
 font-family: 'Exo 2', sans-serif;
 /* background: #000; */
 min-height: 100vh;
+
 }
 
-div.board{
 
+div.board{
+/* 
     left: 50%;
-    transform: translate(100%); 
+    transform: translate(100%);  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 600px;
     height: 530px;
     top: 9rem;
@@ -23,7 +28,10 @@ div.board{
     border: 2px solid black;
     padding: .5rem;
     box-shadow: 5px 10px #888888;
-    margin-top: -270px;
+    margin-top: -600px;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 table tr td{
@@ -40,16 +48,36 @@ table tr td{
     /* background-color: white; */
     cursor: pointer;
     position: relative;
-     /* margin-top: -100px; */
+
+}
+
+
+.cell:hover{
+    background-color: cornflowerblue;
+}
+
+
+div{
+    font-size: 70px;
+    color: rgb(255, 0, 255);
+    display: flex;
+    justify-content:space-around;
+    align-items:flex-end;
+    flex-flow: column;
+    /* height: 500px; */
+    margin-right: 7%;
+    position: relative;
 }
 
 h2#gameMessage{
-    display: absolute;
-    margin-right: 200px;
-    margin-top: 200px;
+    /* display: flex; */
+    /* margin-right: 200px; */
+    /* justify-content:end;
+    align-items: center; */
+    /* margin-top: 200px; */
     font-size: 50px;
     color: #fff;
-    text-align: right;
+    margin-right: 50px;
     text-shadow:
       0 0 5px #fff,
       0 0 10px #fff,
@@ -61,16 +89,6 @@ h2#gameMessage{
       0 0 150px #f40;
 }
 
-.cell:hover{
-    background-color: cornflowerblue;
-}
-
-
-div{
-    font-size: 70px;
-    font-family: 'alarm clock';
-    color: rgb(255, 0, 255);
-}
 :root {
     /* Base font size */
     font-size: 10px;   
@@ -137,35 +155,22 @@ h1:focus {
 
 .music  { 
     background:blue; 
-    position: absolute;
-    margin: -75px 800px;
+    position: relative;
+    margin: 10px 0 0 0;
 }
 
 .musicOff { 
     background:red; 
-    position: absolute;
-    margin: -50px 800px;
+    position: relative;
+    margin: 20px 0 0 0; 
 }
-
-/* .restart{
-    background-color: rgb(204, 179, 207);
-    height: 50px;
-    width: 200px;
-    border-radius: 20px;
-    font-size: 25px;
-    margin-top: 50px;
-    position: absolute;
-    margin: -75px 500px;
-
-} */
-
 
 .restart {
 	box-shadow:inset 0px 39px 0px -24px #e67a73;
 	background-color:#e4685d;
 	border-radius:4px;
 	border:1px solid #ffffff;
-	display:inline-block;
+	/* display:inline-block; */
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
@@ -173,8 +178,8 @@ h1:focus {
 	padding:6px 15px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #b23e35;
-    position: absolute;
-    margin: -75px 500px;
+    position: relative;
+    margin: 200px 100px 50px 0;
 }
 .restart:hover {
 	background-color:#eb675e;
