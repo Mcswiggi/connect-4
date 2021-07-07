@@ -1,14 +1,13 @@
 
 /*------Constants------*/
-const winningCombinations = []
-const player1 = 1//prompt("What is player one's name?")
-const player2 = -1//prompt("What is player two's name?")
+const player1 = prompt("What is player one's name?")
+const player2 = prompt("What is player two's name?")
 /*------Variables (state)------*/
-let gameBoard, playerTurn, x, y  
+let gameBoard, playerTurn
 
 /*------Cached Element References------*/
-const rowEl = document.getElementsByTagName('tr') //y-direction
-const columnEl = document.getElementsByTagName('td') //x-direction
+const rowEl = document.getElementsByTagName('tr') 
+const columnEl = document.getElementsByTagName('td') 
 const resetBtn = document.querySelector('.restart')
 const messageEl = document.querySelector('#gameMessage')
 const cells = document.querySelectorAll('.cell')
@@ -64,7 +63,6 @@ function randomTurn () {
 }
 
 function render (event) {
-    // retrieving what column we are working in
     let column = event.target.cellIndex
     console.log('column' , column)
     // row starts at 5(bottom) and incraments to 0 as the top index
@@ -75,7 +73,6 @@ function render (event) {
     playerClick.volume = .3
     
     for (i = 5; i > -1; i--){
-        //children are the td and will let me go into each spot or cell within each stack
         if (rowEl[i].children[column].style.backgroundColor == 'white'){
             stack.push(rowEl[i].children[column])
             if (playerTurn === 1){
@@ -109,7 +106,6 @@ function render (event) {
                     cells.forEach(function (cell) {
                         cell.removeEventListener('click' , render , false)
                     })
-
                     return
                 }else if ( checkTie() ){
                     messageEl.innerText = 'Tie Game!';
@@ -169,8 +165,6 @@ function verticalWinCondition() {
 }
 
 function diagonalWinCondition() {
-    //iterate through all 7 columns and checking 12 possible winning combinations for it possible to be true
-    //iterating and checking from right to left
     for (let x = 0; x < 4; x++){
         for (let y = 5; y > 2; y--){
             if (checkColor(rowEl[y].children[x].style.backgroundColor, rowEl[y-1].children[x+1].style.backgroundColor, rowEl[y-2].children[x+2].style.backgroundColor, rowEl[y-3].children[x+3].style.backgroundColor)){
@@ -182,7 +176,6 @@ function diagonalWinCondition() {
 }
 
 function diagonalWinCondition2() {
-    // iterating from right to left 
     for (let x = 0; x < 4; x++){
         for (let y = 0; y < 3; y++){
             if (checkColor(rowEl[y].children[x].style.backgroundColor, rowEl[y+1].children[x+1].style.backgroundColor, rowEl[y+2].children[x+2].style.backgroundColor, rowEl[y+3].children[x+3].style.backgroundColor)){
