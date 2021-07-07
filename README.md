@@ -17,7 +17,7 @@ Technologies used:
 - keyframes
 
 Next Steps:
--add a timer to each players turn for more of a challenge
--create an easteregg for connecting 5 in a row
--keep track on how many wins each player has
--add animations for when a game piece is dropped
+- add a timer to each players turn for more of a challenge
+- create an easteregg for connecting 5 in a row
+- keep track on how many wins each player has
+- add animations for when a game piece is dropped

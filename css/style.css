@@ -147,12 +147,14 @@ h1:focus {
     position: relative;
     margin: 260px 300px 50px 0;
 }
+
 .restart:hover {
     background-color:#eb675e;
 }
+
 .restart:active {
     position:relative;
-	top:1px;
+	top:2px;
 }
 
 .music  { 
