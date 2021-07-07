@@ -24,11 +24,11 @@ div.board{
     height: 530px;
     top: 9rem;
 
-    /* background: rgb(87, 168, 255); */
+    background: rgb(87, 168, 255,.4);
     border: 2px solid black;
     padding: .5rem;
-    box-shadow: 5px 10px #888888;
-    margin-top: -600px;
+    box-shadow: 5px 10px #68666671;
+    margin-top: -650px;
     margin-bottom: auto;
     margin-right: auto;
     margin-left: auto;
@@ -158,18 +158,18 @@ h1:focus {
 .restart {
     box-shadow:inset 0px 39px 0px -24px #e67a73;
 	background-color:#e4685d;
+    /* opacity: .6; */
 	border-radius:4px;
 	border:1px solid #ffffff;
-	/* display:inline-block; */
 	cursor:pointer;
-	color:#ffffff;
+	color:black;
 	font-family: 'exo 2';
-	font-size:15px;
+	font-size:25px;
 	padding:6px 15px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #b23e35;
     position: relative;
-    margin: 200px 100px 50px 0;
+    margin: 260px 300px 50px 0;
 }
 .restart:hover {
     background-color:#eb675e;
@@ -180,23 +180,34 @@ h1:focus {
 }
 
 .music  { 
-    background:blue; 
+    background:rgba(255, 60, 60); 
     position: relative;
-    margin: 10px 0 0 0;
+    margin: -50px 60px 0 0;
     font-family: 'exo 2';
+    border-radius: 15px;
+    font-size: 17px;
+    padding: 5px;
+    cursor:pointer;
+
 }
 
 .music:hover {
-
+    background:rgba(255, 60, 60, .45); 
 }
 
 .musicOff { 
-    background:red; 
+    background:rgba(208, 219, 51); 
     position: relative;
-    margin: 20px 0 0 0; 
+    margin: 20px 60px 0 0; 
     font-family: 'exo 2';
+    border-radius: 15px;
+    font-size: 17px;
+    padding: 5px;
+    cursor:pointer;
+
 }
 
-.musticOff:hover{
-    
+.musicOff:hover{
+    background:rgba(208, 219, 51, .45); 
+
 }

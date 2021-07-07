@@ -73,6 +73,7 @@ resetBtn.addEventListener('click', function() {
 
 backgroundMusicbtn.addEventListener('click', backgroundMusicOn)
 backgroundMusicbtnOff.addEventListener('click' , ()=>{
+    //const backgroundMusic = new Audio ('Audio/mixkit-game-level-music-689.wav')
     backgroundMusic.pause()
 })
 /*------Functions------*/
@@ -113,7 +114,7 @@ function handleClick(event) {
 init()
 
 function backgroundMusicOn(){
-    const backgroundMusic = new Audio ('Audio/mixkit-game-level-music-689.wav')
+    //const backgroundMusic = new Audio ('Audio/mixkit-game-level-music-689.wav')
     backgroundMusic.play()
     backgroundMusic.volume = .1
     backgroundMusic.loop = true
@@ -129,10 +130,10 @@ function backgroundMusicOn(){
     playerTurn = randomTurn() //randomly picks who goes first
     if (playerTurn === 1){
         messageEl.innerText = `${player1} goes first`
-        messageEl.style.color = 'red'
+        messageEl.style.color = 'rgb(208, 219, 51)'
     } else {
         messageEl.innerText = `${player2} goes first`
-        messageEl.style.color = 'blue'
+        messageEl.style.color = 'rgb(235,4,80)'
     }
 }
 
@@ -158,10 +159,11 @@ function render (event) {
         if (rowEl[i].children[column].style.backgroundColor == ''){
             row.push(rowEl[i].children[column]);
             if (playerTurn === 1){
-                row[0].style.backgroundColor = 'red';
+                row[0].style.backgroundColor = 'rgb(208, 219, 51)'; 
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player1} WINS!!`;
-                    messageEl.style.color = 'red';
+                    messageEl.style.color = 'rgb(208, 219, 51)';
+
                     const playerWin = new Audio ('Audio/mixkit-casino-bling-achievement-2067.wav')
                     playerWin.play()
                     return //alert(`${player1} WINS!!`);
@@ -170,14 +172,14 @@ function render (event) {
                     return alert('Tie Game!');
                 }else{
                     messageEl.textContent = `${player2}'s turn`
-                    messageEl.style.color = 'blue'
+                    messageEl.style.color = 'rgb(235,4,80)'
                     return playerTurn = -1;
                 }
             }else{
-                row[0].style.backgroundColor = 'blue';
+                row[0].style.backgroundColor = 'rgb(235,4,80)';
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player2} WINS!!`;
-                    messageEl.style.color = 'blue';
+                    messageEl.style.color = 'rgb(235,4,80)';
                     const playerWin = new Audio ('Audio/mixkit-casino-bling-achievement-2067.wav')
                     playerWin.play()
                     return //alert(`${player2} WINS!!`);
@@ -186,7 +188,7 @@ function render (event) {
                     return alert('Tie Game!');
                 }else{
                     messageEl.textContent = `${player1}'s turn`;
-                    messageEl.style.color = 'red'
+                    messageEl.style.color = 'rgb(208, 219, 51)'
                     return playerTurn = 1;
                 }  
             }
