@@ -39,7 +39,7 @@ const player1 = 1 //prompt("What is player one's name?")
 const player2 = -1 //prompt("What is player two's name?")
 /*------Variables (state)------*/
 let gameBoard, isWinner, playerTurn, x, y  
-// let timerIntervalId
+
 /*------Cached Element References------*/
 const rowEl = document.getElementsByTagName('tr') //y-direction
 const columnEl = document.getElementsByTagName('td') //x-direction
@@ -62,7 +62,6 @@ columnEl[i].addEventListener('click', handleClick)
 //iterate through all the cells
 cells.forEach(function (cell) {
     cell.addEventListener('click' , render)
-    // cell.style.backgroundColor = 'white'
 })
 
 resetBtn.addEventListener('click', function() {
@@ -77,27 +76,6 @@ backgroundMusicbtnOff.addEventListener('click' , ()=>{
     backgroundMusic.pause()
 })
 /*------Functions------*/
-
-// function timer() {
-//     let timeLeft = 10
-//     let timer = setInterval (() => {
-//        countdownEl.innerHTML = `${timeLeft} seconds remaining`
-//    timeLeft -= 1
-//    //console.log(timeLeft)
-//    if (timeLeft === 0) {
-//    countdownEl.innerHTML = 'Finished!'
-//    clearInterval(timer)
-//    if (playerTurn === 1){
-//        playerTurn *= -1
-//    }else{
-//        playerTurn *= -1
-//    }
-//    }
-// console.log(timer)
-// }, 1000)
-        
-// }
-
 
 function handleClick(event) {
     console.log('clicked')
