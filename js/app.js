@@ -35,8 +35,8 @@
 
 /*------Constants------*/
 const winningCombinations = []
-const player1 = 1 //prompt("What is player one's name?")
-const player2 = -1 //prompt("What is player two's name?")
+const player1 = prompt("What is player one's name?")
+const player2 = prompt("What is player two's name?")
 /*------Variables (state)------*/
 let gameBoard, isWinner, playerTurn, x, y  
 
