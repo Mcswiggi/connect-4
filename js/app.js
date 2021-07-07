@@ -101,7 +101,8 @@ function backgroundMusicOn(){
  function init() {
     
     cells.forEach(cell => {
-       cell.style.backgroundColor =''
+       cell.style.backgroundColor ='white'
+       cell.style.opacity = '.3'
      })
 
     isWinner = false
@@ -134,10 +135,11 @@ function render (event) {
     //start from the bottom
     for (i = 5; i > -1; i--){
         //.children will let me go into each spot or cell within each row index left and right
-        if (rowEl[i].children[column].style.backgroundColor == ''){
+        if (rowEl[i].children[column].style.backgroundColor == 'white'){
             row.push(rowEl[i].children[column]);
             if (playerTurn === 1){
-                row[0].style.backgroundColor = 'rgb(208, 219, 51)'; 
+                row[0].style.backgroundColor = 'rgb(208, 219, 51)';
+                row[0].style.opacity = '.9'
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player1} WINS!!`;
                     messageEl.style.color = 'rgb(208, 219, 51)';
@@ -155,6 +157,7 @@ function render (event) {
                 }
             }else{
                 row[0].style.backgroundColor = 'rgb(235,4,80)';
+                row[0].style.opacity = '.9'
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.textContent = `${player2} WINS!!`;
                     messageEl.style.color = 'rgb(235,4,80)';
@@ -179,7 +182,7 @@ function checkTie() {
    //pushing spots with color into empty array and comparing it to the 42 spots
   let gameBoard = []
 for( i = 0; i < columnEl.length; i++){
-    if(columnEl[i].style.backgroundColor !== ''){
+    if(columnEl[i].style.backgroundColor !== 'white'){
         gameBoard.push(columnEl[i])
     }
 }
@@ -189,7 +192,7 @@ if (gameBoard.length === 42) {
 }
 
     function checkColor(one , two, three, four) {
-       if (one === two && one === three && one === four && one !== '' && one !== undefined)
+       if (one === two && one === three && one === four && one !== 'white' && one !== undefined)
        return true
     }
         
