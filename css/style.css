@@ -9,9 +9,17 @@ min-height: 100vh;
 
 }
 
+table tr td{
+    width: 90px;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+
+}
 
 div.board{
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,20 +37,7 @@ div.board{
     margin-left: auto;
 }
 
-table tr td{
-    width: 90px;
-    height: 80px;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
 
-}
-
-
-.cell:hover{
-    background-color: cornflowerblue;
-}
 
 div{
     font-size: 70px;
@@ -187,5 +182,4 @@ h1:focus {
 
 .musicOff:hover{
     background:rgba(208, 219, 51, .45); 
-
 }
