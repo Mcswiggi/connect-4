@@ -6,17 +6,7 @@ background-position: center;
 background-size: cover ;
 font-family: 'Exo 2', sans-serif;
 min-height: 100vh;
-
-}
-
-table tr td{
-    width: 90px;
-    height: 80px;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-
+background-color: black;
 }
 
 div.board{
@@ -37,7 +27,14 @@ div.board{
     margin-left: auto;
 }
 
-
+table tr td{
+    width: 90px;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
 
 div{
     font-size: 70px;

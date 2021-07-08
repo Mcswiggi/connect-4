@@ -21,3 +21,6 @@ Next Steps:
 - create an easteregg for connecting 5 in a row
 - keep track on how many wins each player has
 - add animations for when a game piece is dropped
+
+Credits:
+- https://css-tricks.com/how-to-create-neon-text-with-css/

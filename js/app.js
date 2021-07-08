@@ -2,6 +2,7 @@
 /*------Constants------*/
 const player1 = prompt("What is player one's name?")
 const player2 = prompt("What is player two's name?")
+
 /*------Variables (state)------*/
 let gameBoard, playerTurn
 
@@ -43,7 +44,7 @@ function init() {
         cell.style.opacity = '.3'
         cell.addEventListener('click' , render)
     })
-    playerTurn = randomTurn() //randomly picks who goes first
+    playerTurn = randomTurn()
     if (playerTurn === 1){
         messageEl.innerText = `${player1} goes first`
         messageEl.style.color = 'rgb(208, 219, 51)'
@@ -65,8 +66,6 @@ function randomTurn () {
 function render (event) {
     let column = event.target.cellIndex
     console.log('column' , column)
-    // row starts at 5(bottom) and incraments to 0 as the top index
-    // makes sure the game piece will go to the next available spot
     let stack = []
     const playerClick = new Audio ('Audio/mixkit-winning-a-coin-video-game-2069.wav')
     playerClick.play()
@@ -151,7 +150,6 @@ function horizontalWinCondition() {
             }
         }
     }
-
 }
 
 function verticalWinCondition() {
@@ -172,7 +170,6 @@ function diagonalWinCondition() {
             }
         }
     }
-
 }
 
 function diagonalWinCondition2() {
