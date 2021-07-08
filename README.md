@@ -7,6 +7,10 @@ Getting Started:
 
 https://chitraconnect4.surge.sh/
 
+Wireframe:
+<br>
+<img src='img/Screen Shot 2021-07-08 at 2.57.59 PM.png'>
+
 Screenshots:
 <img src='img/Screen Shot 2021-07-07 at 1.16.19 PM.png'>
 
