@@ -77,11 +77,12 @@ function render (event) {
             if (playerTurn === 1){
                 stack[0].style.backgroundColor = 'rgb(208, 219, 51)'
                 stack[0].style.opacity = '.9'
+                console.log(stack)
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.innerText = `${player1} WINS!!`;
                     messageEl.style.color = 'rgb(208, 219, 51)';
                     playerWin.play()
-
+                    
                     cells.forEach(function (cell) {
                         cell.removeEventListener('click' , render , false)
                     })
@@ -97,6 +98,7 @@ function render (event) {
             }else{
                 stack[0].style.backgroundColor = 'rgb(235,4,80)';
                 stack[0].style.opacity = '.9'
+                console.log(stack)
                 if (horizontalWinCondition() || verticalWinCondition() || diagonalWinCondition() || diagonalWinCondition2()){
                     messageEl.innerText = `${player2} WINS!!`;
                     messageEl.style.color = 'rgb(235,4,80)';
