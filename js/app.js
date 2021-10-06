@@ -1,4 +1,3 @@
-
 /*------Constants------*/
 const player1 = prompt("What is player one's name?")
 const player2 = prompt("What is player two's name?")
